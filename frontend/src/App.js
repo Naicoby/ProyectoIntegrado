@@ -1,3 +1,4 @@
+// src/App.js - Actualizar para incluir Layout
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
@@ -8,6 +9,7 @@ import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard';
 import AgendarCita from './pages/AgendarCita';
 import MisCitas from './pages/MisCitas';
+import Layout from './components/common/Layout';
 
 const theme = createTheme({
     palette: {
@@ -19,7 +21,7 @@ const theme = createTheme({
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
     if (loading) return <div>Cargando...</div>;
-    return isAuthenticated ? children : <Navigate to="/login" />;
+    return isAuthenticated ? <Layout>{children}</Layout> : <Navigate to="/login" />;
 };
 
 function AppContent() {
